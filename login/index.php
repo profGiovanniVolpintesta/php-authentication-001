@@ -31,5 +31,24 @@
             </tr>
         </table>        
     </form>
+    <br>
+
+    <?php
+        if (isset($_GET) && isset($_GET["errorCode"]))
+        {
+            switch ($_GET["errorCode"])
+            {
+                case 1:
+                    echo "Errore di autenticazione generico";
+                    break;
+                case 2:
+                    echo "Username o password errati";
+                    break;
+                default:
+                    echo "Errore sconosciuto";
+            }
+        }
+    ?>
+
 </body>
 </html>
