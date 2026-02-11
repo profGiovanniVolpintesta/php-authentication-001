@@ -29,6 +29,7 @@ if (isset($_POST))
             else
             {
                 echo "errore 1: username o password errati";
+                header("location:.");
             }
         } catch(PDOException $e) {
             echo "Connection failed: " . $e->getMessage();

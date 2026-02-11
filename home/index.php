@@ -6,21 +6,25 @@
     <title>Homepage</title>
 </head>
 <body>
-     <?php 
 
+    <?php 
         session_start();
 
         if (isset($_SESSION) && isset($_SESSION["user"]))
         {
             $user = $_SESSION["user"];
-            echo "<h1>Homepage</h1>";
-            echo "Benvenuto $user!";
-            echo '<button type="button" onclick="window.location.href=\'../login/logout.php\'">Logout</button>';
+    ?>
+            <h1>Homepage</h1>
+            Benvenuto <?php echo $user ?>
+            <button type="button" onclick="window.location.href='../login/logout.php'">Logout</button>
+    <?php 
         }
         else
         {
-            echo "<h1>Homepage</h1>";
-            echo '<button type="button" onclick="window.location.href=\'../login\'">Login</button>';
+    ?>
+            <h1>Homepage</h1>
+            <button type="button" onclick="window.location.href='../login'">Login</button>
+    <?php 
         }
 
         // verificare di aver settato un utente dopo il login riuscito
