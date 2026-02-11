@@ -14,18 +14,19 @@
         {
             $user = $_SESSION["user"];
     ?>
-            <h1>Homepage</h1>
+            <h1>Area riservata</h1>
             <br>Benvenuto <?php echo $user ?>
-            <br><button type="button" onclick="window.location.href='../revervedArea'">Area Riservata</button>
+            <br>Cose riservate varie...
+            <br>Cose riservate varie...
+            <br>Cose riservate varie...
+            <br>Cose riservate varie...
+            <br><button type="button" onclick="window.location.href='../home'">Homepage</button>
             <br><button type="button" onclick="window.location.href='../login/logout.php'">Logout</button>
     <?php 
         }
         else
         {
-    ?>
-            <h1>Homepage</h1>
-            <br><button type="button" onclick="window.location.href='../login'">Login</button>
-    <?php 
+            header("location:../home");
         }
 
         // verificare di aver settato un utente dopo il login riuscito
