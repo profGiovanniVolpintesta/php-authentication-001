@@ -14,12 +14,10 @@
         {
             $user = $_SESSION["user"];
     ?>
-            <h1>Area riservata</h1>
-            <br>Benvenuto <?php echo $user ?>
-            <br>Cose riservate varie...
-            <br>Cose riservate varie...
-            <br>Cose riservate varie...
-            <br>Cose riservate varie...
+            <h1>Istruttori</h1>
+
+            
+            
             <br><button type="button" onclick="window.location.href='../home'">Homepage</button>
             <br><button type="button" onclick="window.location.href='../login/logout.php'">Logout</button>
     <?php 
