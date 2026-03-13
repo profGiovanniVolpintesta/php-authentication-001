@@ -11,21 +11,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST))
         $password = $_POST["password"];
 
         try {
+            echo "stop 1<br>";
+
             $conn = connectToDb();
             // set the PDO error mode to exception
 
-            $sql = "SELECT username FROM users WHERE username = '$username' AND password = '$password';";
-            $result = $conn->query($sql);
-            
-            if ($result->rowCount() > 0)
+            echo "stop 2<br>";
+
+            $sql = "INSERT INTO users(username, password, userType) VALUES ($username, $password, 'COACH'),";
+            echo $sql + "<br>";
+
+            if ($conn->exec($sql))
             {
-                session_start();
-                $_SESSION["user"] = $username;
-                header("location:../home");
+                echo "stop 3<br>";
+                //header("location:.");
             }
             else
             {
-                header("location:.?errorCode=2"); // username e password errati
+                header("location:.?errorCode=3"); // operazione fallita
             }
         } catch(PDOException $e) {
             // echo "Connection failed: " . $e->getMessage();
@@ -34,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST))
     }
     else
     {
-        header("location:.?errorCode=2"); // username e password errati
+        header("location:.?errorCode=4"); // dati mancanti
     }
 }
 else
