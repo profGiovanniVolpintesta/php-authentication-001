@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coach</title>
+    <title>Utenti</title>
 </head>
 <body>
 
@@ -19,7 +19,7 @@
             $user = $_SESSION["user"];
             $conn = $_SESSION["dbConnection"];
     ?>
-            <h1>Istruttori</h1>
+            <h1>Utenti</h1>
 
             <?php 
                 
@@ -27,7 +27,7 @@
                 try {
                     $conn = connectToDb();
                     
-                    $sql = "SELECT username from users where userType = 'COACH';";
+                    $sql = "SELECT username from users where userType = 'USER';";
                     // echo $sql;
 
                     $result = $conn->query($sql);
@@ -52,7 +52,7 @@
 
                 ?>
 
-                <form action="./addCoach.php" method="POST">
+                <form action="./addUser.php" method="POST">
                     <table>
                         <tr>
                             <td>

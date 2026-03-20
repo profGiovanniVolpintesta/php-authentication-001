@@ -17,6 +17,7 @@
             <h1>Homepage</h1>
             <br>Benvenuto <?php echo $user ?>
             <br><button type="button" onclick="window.location.href='../coachList'">Istruttori</button>
+            <br><button type="button" onclick="window.location.href='../userList'">Utenti</button>
             <br><button type="button" onclick="window.location.href='../login/logout.php'">Logout</button>
     <?php 
         }
