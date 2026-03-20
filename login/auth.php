@@ -14,13 +14,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST))
             $conn = connectToDb();
             // set the PDO error mode to exception
 
-            $sql = "SELECT username FROM users WHERE username = '$username' AND password = '$password';";
+            // Questa query non produce risultati in caso di login fallito.
+            // In caso, invece, di login riuscito, produce la lista dei permessi.
+            $sql = "SELECT DISTINCT ur.rights
+                    FROM users u INNER JOIN user_rights ur ON u.userType = ur.userType
+                    WHERE u.username = '$username' AND u.password = '$password';";
+
+            echo $sql;
             $result = $conn->query($sql);
             
             if ($result->rowCount() > 0)
             {
                 session_start();
                 $_SESSION["user"] = $username;
+                $_SESSION["rights"] = array();
+
+                while ($row = $result->fetch())
+                {
+                    $_SESSION["rights"][] = $row;
+                }
+
                 header("location:../home");
             }
             else
