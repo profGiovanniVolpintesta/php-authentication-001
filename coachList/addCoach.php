@@ -11,20 +11,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST))
         $password = $_POST["password"];
 
         try {
-            echo "stop 1<br>";
-
             $conn = connectToDb();
             // set the PDO error mode to exception
 
-            echo "stop 2<br>";
-
-            $sql = "INSERT INTO users(username, password, userType) VALUES ($username, $password, 'COACH'),";
-            echo $sql + "<br>";
+            $sql = "INSERT INTO users(username, password, userType) VALUES ('$username', '$password', 'COACH');";
+            // echo "$sql <br>";
 
             if ($conn->exec($sql))
             {
-                echo "stop 3<br>";
-                //header("location:.");
+                header("location:.?errorCode=success");
             }
             else
             {

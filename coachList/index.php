@@ -81,11 +81,13 @@
 
                 <?php
 
-                echo "<br>";
                 if (isset($_GET) && isset($_GET["errorCode"]))
                 {
                     switch ($_GET["errorCode"])
                     {
+                        case "success":
+                            echo "Inserimento avvenuto con successo";
+                            break;
                         case 1:
                             echo "Errore nell'inserimento dei dati";
                             break;
@@ -99,6 +101,8 @@
                             echo "Errore sconosciuto";
                     }
                 }
+
+                echo "<br>";
                 
                 } catch(PDOException $e) {
                     // echo "Connection failed: " . $e->getMessage();
