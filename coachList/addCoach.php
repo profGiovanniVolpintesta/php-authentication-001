@@ -40,23 +40,4 @@ else
     header("location:.?errorCode=1"); // errore generico
 }
 
-
-/*
-$servername = "localhost";
-$dbUsername = "root";
-$dbPassword = "mysql";
-$dbname = "volpintesta_autenticazione_php";
-
-try {
-  $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dbUsername, $dbPassword);
-  // set the PDO error mode to exception
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-  
-
-  $result = $conn->query("");
-} catch(PDOException $e) {
-  echo "Connection failed: " . $e->getMessage();
-}
-  */
 ?>
