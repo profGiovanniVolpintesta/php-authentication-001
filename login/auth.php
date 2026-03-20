@@ -31,8 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST))
 
                 while ($row = $result->fetch())
                 {
-                    $_SESSION["rights"][] = $row;
+                    $_SESSION["rights"][] = $row["rights"];
                 }
+
+                // var_dump($_SESSION["rights"]);
 
                 header("location:../home");
             }

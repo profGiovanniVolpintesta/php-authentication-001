@@ -1,3 +1,7 @@
+<?php
+    require_once("../scripts/rightsChecking.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,8 +20,15 @@
     ?>
             <h1>Homepage</h1>
             <br>Benvenuto <?php echo $user ?>
-            <br><button type="button" onclick="window.location.href='../coachList'">Istruttori</button>
-            <br><button type="button" onclick="window.location.href='../userList'">Utenti</button>
+
+            <?php if (checkCoachVisualizeRights() || checkCoachCreateRights()) { ?>
+                <br><button type="button" onclick="window.location.href='../coachList'">Istruttori</button>
+            <?php }?>
+
+            <?php if (checkUserVisualizeRights() || checkUserCreateRights()) { ?>
+                <br><button type="button" onclick="window.location.href='../userList'">Utenti</button>
+            <?php }?>
+
             <br><button type="button" onclick="window.location.href='../login/logout.php'">Logout</button>
     <?php 
         }

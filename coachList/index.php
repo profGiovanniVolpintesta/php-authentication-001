@@ -1,5 +1,6 @@
 <?php 
     require_once "../scripts/dbConnection.php";
+    require_once("../scripts/rightsChecking.php");
 ?>
 
 <!DOCTYPE html>
@@ -21,37 +22,42 @@
     ?>
             <h1>Istruttori</h1>
 
-            <?php 
-                
-
-                try {
-                    $conn = connectToDb();
-                    
-                    $sql = "SELECT username from users where userType = 'COACH';";
-                    // echo $sql;
-
-                    $result = $conn->query($sql);
-                    // var_dump($result);
-
-                    if ($result->rowCount() > 0)
-                    {
-                        echo "<table>";
-                        echo "<th>Username</th>";
+            <?php
+                if (checkCoachVisualizeRights()) 
+                {
+                    try {
+                        $conn = connectToDb();
                         
-                        while ($row = $result->fetch())
+                        $sql = "SELECT username from users where userType = 'COACH';";
+                        // echo $sql;
+
+                        $result = $conn->query($sql);
+                        // var_dump($result);
+
+                        if ($result->rowCount() > 0)
                         {
-                            echo "<tr><td>";
-                            echo $row['username'];
-                            echo "</td></tr>";
+                            echo "<table>";
+                            echo "<th>Username</th>";
+                            
+                            while ($row = $result->fetch())
+                            {
+                                echo "<tr><td>";
+                                echo $row['username'];
+                                echo "</td></tr>";
+                            }
+
+                            echo "</table>";
                         }
 
-                        echo "</table>";
+                        echo "<br><br>";
+                    } catch(PDOException $e) {
+                        // echo "Connection failed: " . $e->getMessage();
+                        http_response_code(500); // internal server error
                     }
+                }
+            ?>
 
-                    echo "<br><br>";
-
-                ?>
-
+            <?php if (checkCoachCreateRights()) { ?>
                 <form action="./addCoach.php" method="POST">
                     <table>
                         <tr>
@@ -78,9 +84,9 @@
                         </tr>
                     </table>        
                 </form>
+            <?php } ?>
 
-                <?php
-
+            <?php
                 if (isset($_GET) && isset($_GET["errorCode"]))
                 {
                     switch ($_GET["errorCode"])
@@ -101,16 +107,9 @@
                             echo "Errore sconosciuto";
                     }
                 }
-
-                echo "<br>";
-                
-                } catch(PDOException $e) {
-                    // echo "Connection failed: " . $e->getMessage();
-                    http_response_code(500); // internal server error
-                }
-
             ?>
             
+            <br>
             <br><button type="button" onclick="window.location.href='../home'">Homepage</button>
             <br><button type="button" onclick="window.location.href='../login/logout.php'">Logout</button>
     <?php 
