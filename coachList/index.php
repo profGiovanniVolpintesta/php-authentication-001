@@ -57,7 +57,7 @@
                 }
             ?>
 
-            <?php if (checkCoachCreateRights()) { ?>
+            <?php if (checkCoachCreateRights()) {?>
                 <form action="./addCoach.php" method="POST">
                     <table>
                         <tr>

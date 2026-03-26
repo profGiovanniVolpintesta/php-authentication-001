@@ -17,6 +17,9 @@
         if (isset($_SESSION) && isset($_SESSION["user"]))
         {
             $user = $_SESSION["user"];
+            // var_dump($_SESSION["user"]);
+            // var_dump($_SESSION["rights"]);
+
     ?>
             <h1>Homepage</h1>
             <br>Benvenuto <?php echo $user ?>

@@ -8,11 +8,8 @@
     {
         if (isset($_SESSION) && isset($_SESSION["rights"]))
         {
-            $rightIndex = array_search($rightsKey, $_SESSION["rights"]);
-            if ($rightIndex != NULL && $rightIndex != FALSE)
-            {
-                return true;
-            }
+            $elemExists = in_array($rightsKey, $_SESSION["rights"]);
+            return $elemExists;
         }
         return false;
     }
